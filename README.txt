@@ -16,7 +16,9 @@ User Guid:
 [0]. Quit
 +-----------Tutorial: Recording #5.mp4 -------+
 
+How to use: https://youtu.be/4tdw2rL6DNk
 
+If you Developer. You are must welcome to contribute. i will be thank full
 
 To Create API key:
 >> https://youtu.be/vlvtqp44xoQ
