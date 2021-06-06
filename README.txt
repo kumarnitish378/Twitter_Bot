@@ -1,4 +1,7 @@
 User Guid:
+> Open Terminal (In Linux Dist.)
+        Or
+> Open Command Promt (In Windows)
 +------------------------------+
 1.  pip install tweepy
 2.  pip install termcolor
