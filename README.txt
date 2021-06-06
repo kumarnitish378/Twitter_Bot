@@ -14,7 +14,7 @@ User Guid:
 [6]. Update Post/New Post
 [7]. Make Trend (Upcoming Version)
 [0]. Quit
-+------------------------------+
++-----------Tutorial: Recording #5.mp4 -------+
 
 
 
