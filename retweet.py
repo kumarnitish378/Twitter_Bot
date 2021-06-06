@@ -1,5 +1,5 @@
 import tweepy
-from time import sleep
+from time import sleep, time
 from datetime import datetime
 import sys
 from termcolor import colored
@@ -154,7 +154,6 @@ def user_data():
     print("Description: {}".format(user.description))
     print("Total Likes; {}".format(user.favourites_count))
 
-tweet = tweepy.Cursor(api.search)
 
 def follow(number=10, gf=30):
     '''
@@ -211,14 +210,14 @@ def retweet(hashtag, id_list=[], nm=20):
                 print("Id: {}".format(twee_id))
                 print("text: {}".format(tweet_text))
                 if twee_id in id_list:
-                    print("Already Tweeted!")
+                    print(colored("Already Tweeted!", "red"))
                     tweet.favorite()
                     print("Tweet Likes")
                 else:
                     api.retweet(twee_id)
                     tweet.favorite()
-                    print("Tweet Likes")
-                    print("Retweete successful!")
+                    print(colored("Tweet Likes", "green"))
+                    print(colored("Retweete successful!", "green"))
                     f.write(str(twee_id))
                     f.write("\n")
                     id_list.append(twee_id)
@@ -264,6 +263,24 @@ def read_id():
         a = [123456789]
         return a
 
+
+def creat_post(mess="I Support Hack the World", post_num=5):
+    try:
+        for tw in range(post_num):
+            try:
+                api.update_status(mess+" "+ str(time()))
+                print("Send {} Successfull".format(tw))
+                sleep(0.1)
+            except tweepy.TweepError as cer:
+                print(cer.reason)
+                pass
+        sleep(1)
+        return True
+    except:
+        print("Error")
+        return False
+        
+        
 def banner():
     print(colored('''
     |------------------------------------------------|
@@ -277,6 +294,7 @@ def banner():
     @A.I.SH.A
     ''', 'blue'))
     
+
 def post_feed(post="hello Tweeter"):
     try:
         api.update_status(post)
@@ -287,16 +305,12 @@ def post_feed(post="hello Tweeter"):
         return False
 
 
-
 if __name__ == "__main__":
     id_list = read_id()
-    # retweet("#Shankhnaad", 30, id_list)
-    # follow(50)
-    # print(api.trends_available())
     banner()
-    print(colored("Hello User. This is Twitter Bot.", 'green'))
+    print(colored("Hello User. This is A.I.SH.A Version 0.1.", 'green'))
     user_data()
-    qury = '1'
+    qury = '8'
     while qury != 0:
         print('''
 [1]. likes Tweets
@@ -304,8 +318,11 @@ if __name__ == "__main__":
 [3]. Like and tweet
 [4]. follow followers
 [5]. User Details
+[6]. Update Post/New Post
+[7]. Make Trend
 [0]. Quit
             ''')
+        
         qury = input("A.I.SH.A >> ")
         if qury == '0':
             print("Thanks")
@@ -364,9 +381,25 @@ if __name__ == "__main__":
                 name = str(input("please Enter Screen Name >> "))
             user_details(name=name)
             print("Done")
-        
+            
+        elif qury == '6':
+            tag = input("Enter message >> ")
+            while tag is None:
+                tag = input("Enter message: >> ")
+    
+            number = int(input("How many tweets want to tweet? >> "))
+            while number > 700:
+                print("Please enter Below 700")
+                number = int(input("How many tweets want to Retweet and Likes? >> "))
+            creat_post(tag, number)
+            print("Done")
+        elif qury == '7':
+            print("We Are Unable to Do this Now.")
+            print("Our Team working On it.")
+            print("It will be possible In upcoming Version")
+            print("Thank me: hacktheworld378@gmail.com")
         else:
             print("Choose Veiled Option")
+        sleep(1)
         banner()
-        
-        
+    print("Thank For Using")
